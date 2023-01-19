@@ -4,7 +4,6 @@ import exampleRoute from "./routes/exampleRoutes";
 import mongoose from "mongoose";
 import { DB, PORT } from "./config";
 import { errorHandler } from "./middleware/errorHanlder";
-import morgan from "morgan";
 const app = express();
 app.use(express.json());
 
@@ -15,7 +14,7 @@ app.use(() => {
 });
 
 app.use(errorHandler);
-
+mongoose.set("strictQuery", true);
 mongoose
   .connect(DB)
   .then(() => {
